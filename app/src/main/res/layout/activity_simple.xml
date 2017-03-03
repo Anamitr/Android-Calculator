@@ -10,29 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="a195059.calculator.SimpleActivity">
 
-    <Button
-        android:text="0"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/b0"
-        android:layout_width="70dp" />
-
-    <Button
-        android:text="+-"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/b0"
-        android:layout_toEndOf="@+id/b0"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:id="@+id/bNegate" />
-
     <TextView
         android:text="0"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -41,36 +21,55 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="0"
-        android:layout_height="70dp"
-        android:id="@+id/button5"
-        android:layout_width="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/bNegate"
-        android:layout_toEndOf="@+id/bNegate"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
-
-    <Button
-        android:text="0"
-        android:layout_height="70dp"
-        android:id="@+id/button3"
-        android:layout_width="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button5"
-        android:layout_toEndOf="@+id/button5"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
-
-    <Button
-        android:text="0"
-        android:layout_height="70dp"
-        android:id="@+id/button4"
-        android:layout_width="70dp"
-        android:layout_above="@+id/b0"
+    <!--GridLayout
+        android:id="@+id/simpleGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/SimpleView"
+        android:columnCount="4"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/bCE"
+            android:text="CE"
+            android:textSize="@string/text_size"
+            android:layout_height="@string/button_size"
+            android:layout_width="@string/button_size"
+            android:background="@string/button_color"
+            />
+        <!Button
+            android:id="@+id/bC"
+            android:text="C"
+            android:textSize="@string/text_size"
+            android:layout_height="@string/button_size"
+            android:layout_width="@string/button_size"
+            android:background="@string/button_color"/>
+        <!Button
+            android:id="@+id/bBackspace"
+            android:text="<-"
+            android:textSize="@string/text_size"
+            android:layout_height="@string/button_size"
+            android:layout_width="@string/button_size"
+            android:background="@string/button_color"/>
+        <!Button
+            android:id="@+id/bDivide"
+            android:text="/"
+            android:textSize="@string/text_size"
+            android:layout_height="@string/button_size"
+            android:layout_width="@string/button_size"
+            android:background="@string/button_color"/>
+        <Button
+            android:id="@+id/b7"
+            android:text="7"
+            android:textSize="@string/text_size"
+            android:layout_height="@string/button_size"
+            android:layout_width="@string/button_size"
+            android:layout_row="0"
+            android:background="@string/button_color"/>
+
+    </GridLayout-->
 
 
 </RelativeLayout>
