@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
 //import static a195059.calculator.R.id.simpleGrid;
+import java.text.DecimalFormat;
+
 import bsh.Interpreter;
 
 import static android.R.attr.data;
@@ -32,6 +35,7 @@ public class SimpleActivity extends AppCompatActivity {
     public static final int BUTTON_ROWS = 5;
     public static final int BUTTON_COLUMNS = 4;
     public static final int NUM_OF_BUTTONS = BUTTON_ROWS * BUTTON_COLUMNS;
+    public static final int MAX_TEXTVIEW_CHARS = 10;
 
     private TextView calTextView;
 
@@ -87,13 +91,15 @@ public class SimpleActivity extends AppCompatActivity {
         textView.setTextSize(FONT_SIZE);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER | Gravity.RIGHT);
-        Interpreter ip = new Interpreter();
-        try {
-            ip.eval("result = " + "-(-2)");
-            textView.setText(ip.get("result").toString());
-        } catch (Exception e) {
-            Log.e("Calculator", "Exception: " + e.getMessage());
-        }
+//        Interpreter ip = new Interpreter();
+//        try {
+//            ip.eval("result = " + "-(-2)");
+//            double res = (double)ip.get("result");
+//            Log.d("Result:", String.valueOf(res));
+//            textView.setText(ip.get("result").toString());
+//        } catch (Exception e) {
+//            Log.e("Calculator", "Exception: " + e.getMessage());
+//        }
         return textView;
     }
 
@@ -105,20 +111,25 @@ public class SimpleActivity extends AppCompatActivity {
     }
 
     private void setButtonsListeners (Button[] buttons) {
-        for(int i = 0; i < 2; i++) {
-            buttons[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    calTextView.setText("0");
-                }
-            });
-        }
+        buttons[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTextView(deleteLastOp(calTextView.getText().toString()));
+            }
+        });
+
+        buttons[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTextView("0");
+            }
+        });
 
         buttons[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String equation = calTextView.getText().toString();
-                calTextView.setText(equation.substring(0,equation.length()-1));
+                updateTextView(equation.substring(0,equation.length()-1));
             }
         });
         final String [] labels = {"/","7","8","9","*","4","5","6","-","1","2","3","+","+-","0",".","=",};
@@ -128,8 +139,10 @@ public class SimpleActivity extends AppCompatActivity {
             buttons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(calTextView.getText().equals("0")) calTextView.setText(label);
-                    else calTextView.append(label);
+                    Log.d("TextView: ", "(" + calTextView.getText().toString() + ")");
+                    Log.d("Equals 0?: ", Boolean.toString(calTextView.getText().toString().trim().equals("0")));
+                    if(calTextView.getText().toString().trim().equals("0")) updateTextView(label);
+                    else updateTextView(calTextView.getText() + label);
                 }
             });
         }
@@ -154,7 +167,7 @@ public class SimpleActivity extends AppCompatActivity {
             Log.d("Before inserting: ", calTextView.getText().toString());
             Log.d("Equation: ", insertDotsZeros(calTextView.getText().toString()));
             ip.eval("result = " + insertDotsZeros(calTextView.getText().toString()));
-            calTextView.setText(ip.get("result").toString());
+            updateTextView(new DecimalFormat("#.##").format((double)ip.get("result")).replace(",","."));
         } catch (Exception e) {
             Log.e("Calculator", "Exception: " + e.getMessage());
         }
@@ -179,7 +192,39 @@ public class SimpleActivity extends AppCompatActivity {
     private void negateResult() {
         String result = calTextView.getText().toString();
         if(result.charAt(0)!='-')
-            calTextView.setText("-" + calTextView.getText());
+            updateTextView("-" + calTextView.getText());
+        else updateTextView(result.substring(1, result.length()));
     }
 
+    private void updateTextView(String s) {
+        calTextView.setText(getSafeSubstring(s, MAX_TEXTVIEW_CHARS));
+    }
+
+    private static String deleteLastOp(String equation) {
+        if(equation.matches(".*[-/+\\*].*")) {
+            String[] numbers = equation.split("[-/+\\*]");
+            String operators = equation.replaceAll("[0123456789.]", "");
+            for(int i = 0; i < numbers.length; i++) {
+                if(!numbers[i].contains(".")) numbers[i] += ".0";
+                System.out.println(numbers[i]);
+            }
+            equation = "";
+            for(int i = 0; i < numbers.length-1; i++) {
+                equation += numbers[i];
+                equation += operators.charAt(i);
+            }
+            equation = equation.substring(0, equation.length()-1);
+        }
+        else equation = "0";
+        return equation;
+    }
+
+    private static String getSafeSubstring(String s, int maxLength){
+        if(!TextUtils.isEmpty(s)){
+            if(s.length() >= maxLength){
+                return s.substring(0, maxLength);
+            }
+        }
+        return s;
+    }
 }
