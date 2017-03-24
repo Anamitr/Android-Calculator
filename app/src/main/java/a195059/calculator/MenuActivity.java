@@ -18,6 +18,11 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void advancedClick(View v) {
+        Intent intent = new Intent(this, AdvancedActivity.class);
+        startActivity(intent);
+    }
+
     public void aboutClick(View v) {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);

@@ -1,8 +1,8 @@
 package a195059.calculator;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -16,13 +16,11 @@ import java.text.DecimalFormat;
 
 import bsh.Interpreter;
 
-//import android.widget.GridLayout.LayoutParams;
-//import static a195059.calculator.R.id.simpleGrid;
+public class AdvancedActivity extends AppCompatActivity {
 
-public class SimpleActivity extends AppCompatActivity {
     public static final int TEXT_VIEW_SIZE = 200;
     public static final int FONT_SIZE = 60;
-    public static final int BUTTON_ROWS = 5;
+    public static final int BUTTON_ROWS = 7;
     public static final int BUTTON_COLUMNS = 4;
     public static final int NUM_OF_BUTTONS = BUTTON_ROWS * BUTTON_COLUMNS;
     public static final int MAX_TEXTVIEW_CHARS = 10;
@@ -34,9 +32,9 @@ public class SimpleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getTableWithAllRowsStretchedView());
-        if (savedInstanceState != savedInstanceState){
-            updateTextView(savedInstanceState.getString("value"));
-        }
+//        if (savedInstanceState != savedInstanceState){
+//            updateTextView(savedInstanceState.getString("value"));
+//        }
     }
 
     public LinearLayout getTableWithAllRowsStretchedView() {
@@ -85,20 +83,12 @@ public class SimpleActivity extends AppCompatActivity {
         textView.setTextSize(FONT_SIZE);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER | Gravity.RIGHT);
-//        Interpreter ip = new Interpreter();
-//        try {
-//            ip.eval("result = " + "-(-2)");
-//            double res = (double)ip.get("result");
-//            Log.d("Result:", String.valueOf(res));
-//            textView.setText(ip.get("result").toString());
-//        } catch (Exception e) {
-//            Log.e("Calculator", "Exception: " + e.getMessage());
-//        }
+
         return textView;
     }
 
     private void setButtonsTexts(Button[] buttons) {
-        String[] labels = {"CE", "C", "<-", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "+-", "0", ",", "=",};
+        String[] labels = {"CE", "C", "<-", "+-", "sin", "cos", "tan", "ln", "sqrt", "x^2", "x^y", "log", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ",", "=", "+",};
         for (int i = 0; i < NUM_OF_BUTTONS; i++) {
             buttons[i].setText(labels[i]);
         }
@@ -126,10 +116,17 @@ public class SimpleActivity extends AppCompatActivity {
                 updateTextView(equation.substring(0, equation.length() - 1));
             }
         });
-        final String[] labels = {"/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "+-", "0", ".", "=",};
-        for (int i = 3; i < 19; i++) {
-            if (i == 16) continue;
-            final String label = labels[i - 3];
+        buttons[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculate();
+                negateResult();
+            }
+        });
+        final String[] labels = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"};
+        for (int i = 12; i < 28; i++) {
+            //if (i == 16) continue;
+            final String label = labels[i - 12];
             if (label == "/" || label == "*" || label == "-" || label == "+")
                 buttons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -154,6 +151,13 @@ public class SimpleActivity extends AppCompatActivity {
                         if(lastChar.matches(digitRegex) && !StringUtils.getLastNumber(current).contains(label)) updateTextView(calTextView.getText() + label);
                     }
                 });
+            else if(label == "=")
+                buttons[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        calculate();
+                    }
+                });
             else
                 buttons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -166,17 +170,10 @@ public class SimpleActivity extends AppCompatActivity {
                     }
                 });
         }
-        buttons[19].setOnClickListener(new View.OnClickListener() {
+        buttons[26].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calculate();
-            }
-        });
-        buttons[16].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculate();
-                negateResult();
             }
         });
     }

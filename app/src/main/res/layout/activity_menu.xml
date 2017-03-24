@@ -29,7 +29,8 @@
         android:layout_alignLeft="@+id/bSimple"
         android:layout_alignStart="@+id/bSimple"
         android:layout_marginTop="17dp"
-        android:id="@+id/bAdvanced" />
+        android:id="@+id/bAdvanced"
+        android:onClick="advancedClick"/>
 
     <Button
         android:text="Exit"
