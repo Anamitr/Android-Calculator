@@ -85,15 +85,15 @@ public class SimpleActivity extends AppCompatActivity {
         textView.setTextSize(FONT_SIZE);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER | Gravity.RIGHT);
-//        Interpreter ip = new Interpreter();
-//        try {
-//            ip.eval("result = " + "-(-2)");
-//            double res = (double)ip.get("result");
-//            Log.d("Result:", String.valueOf(res));
-//            textView.setText(ip.get("result").toString());
-//        } catch (Exception e) {
-//            Log.e("Calculator", "Exception: " + e.getMessage());
-//        }
+        Interpreter ip = new Interpreter();
+        try {
+            ip.eval("result = " + "sin(2.0)");
+            double res = (double)ip.get("result");
+            Log.d("Result:", String.valueOf(res));
+            textView.setText(ip.get("result").toString());
+        } catch (Exception e) {
+            Log.e("Calculator", "Exception: " + e.getMessage());
+        }
         return textView;
     }
 

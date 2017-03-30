@@ -123,6 +123,14 @@ public class AdvancedActivity extends AppCompatActivity {
                 negateResult();
             }
         });
+//        buttons[9].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String current = calTextView.getText().toString().trim();
+//                String lastChar = current.substring(current.length() - 1);
+//                if(lastChar.matches(digitRegex)) updateTextView(calTextView.getText() + "^2");
+//            }
+//        });
         final String[] labels = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"};
         for (int i = 12; i < 28; i++) {
             //if (i == 16) continue;
