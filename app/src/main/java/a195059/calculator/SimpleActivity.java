@@ -34,7 +34,7 @@ public class SimpleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getTableWithAllRowsStretchedView());
-        if (savedInstanceState != savedInstanceState){
+        if (savedInstanceState != null){
             updateTextView(savedInstanceState.getString("value"));
         }
     }
@@ -206,6 +206,7 @@ public class SimpleActivity extends AppCompatActivity {
 
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        Log.d("Obrot: ", calTextView.getText().toString().trim());
         savedInstanceState.putString("value", calTextView.getText().toString().trim());
     }
 }
