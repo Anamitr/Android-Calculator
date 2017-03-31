@@ -1,7 +1,7 @@
 package a195059.calculator;
 
 import android.graphics.Color;
-import android.support.v4.content.res.TypedArrayUtils;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.view.ViewGroup.LayoutParams;
 
 import java.text.DecimalFormat;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static java.lang.Math.*;
 
@@ -74,7 +70,7 @@ public class AdvancedActivity extends AppCompatActivity {
             tableLayout.addView(tableRow);
         }
 
-        setButtonsTexts(buttons);
+        setButtonsAppearance(buttons);
         setButtonsListeners(buttons);
         linearLayout.addView(calTextView = getCalculatorTextView());
         linearLayout.addView(tableLayout);
@@ -95,10 +91,16 @@ public class AdvancedActivity extends AppCompatActivity {
         return textView;
     }
 
-    private void setButtonsTexts(Button[] buttons) {
+    private void setButtonsAppearance(Button[] buttons) {
         String[] labels = {"CE", "C", "<-", "+-", "sin", "cos", "tan", "ln", "sqrt", "x^2", "x^y", "mod", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ",", "=", "+",};
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.parseColor("#2061c9")); // Changes this drawbale to use a single color instead of a gradient
+        gd.setCornerRadius(5);
+        gd.setStroke(1, Color.parseColor("#0099cc"));
         for (int i = 0; i < NUM_OF_BUTTONS; i++) {
             buttons[i].setText(labels[i]);
+            buttons[i].setTextColor(Color.parseColor("#FFFFFF"));
+            buttons[i].setBackgroundDrawable(gd);
         }
     }
 
@@ -127,112 +129,122 @@ public class AdvancedActivity extends AppCompatActivity {
         buttons[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
-                negateResult();
+                String current = calTextView.getText().toString().trim();
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    negateResult();
+                }
             }
         });
         buttons[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
                 String current = calTextView.getText().toString().trim();
-                Double result = Double.parseDouble(current);
-                result = sin(result);
-                updateTextView(result.toString());
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    current = calTextView.getText().toString().trim();
+                    Double result = Double.parseDouble(current);
+                    result = sin(result);
+                    updateTextView(result.toString());
+                }
             }
         });
         buttons[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
                 String current = calTextView.getText().toString().trim();
-                Double result = Double.parseDouble(current);
-                result = cos(result);
-                updateTextView(result.toString());
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    current = calTextView.getText().toString().trim();
+                    Double result = Double.parseDouble(current);
+                    result = cos(result);
+                    updateTextView(result.toString());
+                }
             }
         });
         buttons[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
                 String current = calTextView.getText().toString().trim();
-                Double result = Double.parseDouble(current);
-                result = tan(result);
-                updateTextView(result.toString());
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    current = calTextView.getText().toString().trim();
+                    Double result = Double.parseDouble(current);
+                    result = tan(result);
+                    updateTextView(result.toString());
+                }
             }
         });
         buttons[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
                 String current = calTextView.getText().toString().trim();
-                Double result = Double.parseDouble(current);
-                result = log(result);
-                updateTextView(result.toString());
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    current = calTextView.getText().toString().trim();
+                    Double result = Double.parseDouble(current);
+                    result = log(result);
+                    updateTextView(result.toString());
+                }
             }
         });
         buttons[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
                 String current = calTextView.getText().toString().trim();
-                Double result = Double.parseDouble(current);
-                result = sqrt(result);
-                updateTextView(result.toString());
+                if(StringUtils.checkIfOpNotLat(current)) {
+                    calculate();
+                    current = calTextView.getText().toString().trim();
+                    Double result = Double.parseDouble(current);
+                    result = sqrt(result);
+                    updateTextView(result.toString());
+                }
             }
         });
-        buttons[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculate();
-                String current = calTextView.getText().toString().trim();
-                updateTextView(calTextView.getText() + "*" + calTextView.getText());
-                calculate();
-            }
-        });
-        buttons[10].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //calculate();
-                String current = calTextView.getText().toString().trim();
-                String lastChar = current.substring(current.length() - 1);
-                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
-                    Log.d("SameChar: ", "Nic nie robimy");
-                else if (calTextView.getText().toString().trim().equals("0"))
-                    updateTextView("^");
-                else updateTextView(calTextView.getText() + "^");
-            }
-        });
-        buttons[11].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculate();
-                String current = calTextView.getText().toString().trim();
-                String lastChar = current.substring(current.length() - 1);
-                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
-                    Log.d("SameChar: ", "Nic nie robimy");
-                else if (calTextView.getText().toString().trim().equals("0"))
-                    updateTextView("%");
-                else updateTextView(calTextView.getText() + "%");
-            }
-        });
-        final String[] labels = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"};
-        for (int i = 12; i < 28; i++) {
+//        buttons[10].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //calculate();
+//                String current = calTextView.getText().toString().trim();
+//                String lastChar = current.substring(current.length() - 1);
+//                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
+//                    Log.d("SameChar: ", "Nic nie robimy");
+//                else if (calTextView.getText().toString().trim().equals("0"))
+//                    updateTextView("^");
+//                else updateTextView(calTextView.getText() + "^");
+//            }
+//        });
+//        buttons[11].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                calculate();
+//                String current = calTextView.getText().toString().trim();
+//                String lastChar = current.substring(current.length() - 1);
+//                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
+//                    Log.d("SameChar: ", "Nic nie robimy");
+//                else if (calTextView.getText().toString().trim().equals("0"))
+//                    updateTextView("%");
+//                else updateTextView(calTextView.getText() + "%");
+//            }
+//        });
+        final String[] labels = {"^2", "^", "%", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"};
+        int startIndex = 9;
+        for (int i = startIndex; i < 28; i++) {
             //if (i == 16) continue;
-            final String label = labels[i - 12];
-            if (label == "/" || label == "*" || label == "-" || label == "+")
+            final String label = labels[i - startIndex];
+            if (label == "/" || label == "*" || label == "-" || label == "+" || label == "%" || label == "^2" || label == "^")
                 buttons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("TextView: ", "(" + calTextView.getText().toString() + ")");
 //                        Log.d("Equals 0?: ", Boolean.toString(calTextView.getText().toString().trim().equals("0")));
                         String current = calTextView.getText().toString().trim();
-                        String lastChar = current.substring(current.length() - 1);
-                        if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
-                            Log.d("SameChar: ", "Nic nie robimy");
-                        else if (calTextView.getText().toString().trim().equals("0"))
-                            updateTextView(label);
-                        else updateTextView(calTextView.getText() + label);
+                        if(StringUtils.checkIfOpNotLat(current)) {
+                            if (calTextView.getText().toString().trim().equals("0") && label == "-")
+                                updateTextView(label);
+                            else if(calTextView.getText().toString().trim().equals("0")) {}
+                            else updateTextView(calTextView.getText() + label);
+                        }
                     }
                 });
             else if (label == ".")
@@ -275,37 +287,13 @@ public class AdvancedActivity extends AppCompatActivity {
 
     private void calculate() {
         String current = calTextView.getText().toString().trim();
-        ArrayList<String> numbers = new ArrayList<String>(Arrays.asList(StringUtils.getNumbers(current)));
+        String[] numbers = StringUtils.getNumbers(current);
         String operators = StringUtils.getOperators(current);
-        Log.d("numbers before:", numbers.toString());
-        Log.d("operators before:", operators.toString());
-        if (current.contains("^")) {
-            int count = StringUtils.countSubstring(operators, "^");
-            Integer j = 0;
+        if(numbers.length != operators.length()) {
+            String equation = StringUtils.convertSpecialOperator(current, "^");
+            //equation = StringUtils.convertSpecialOperator(equation, "%");
+            updateTextView(equation);
 
-            for (; j < operators.length(); j++) {
-                if (operators.charAt(j) == '^') {
-                    Log.d("Found ^ at:", j.toString());
-                    String first = numbers.get(j);
-                    String second = numbers.get(j + 1);
-                    Double result = pow(Double.parseDouble(first), Double.parseDouble(second));
-                    operators = StringUtils.deleteCharAt(operators, j);
-                    numbers.remove(j + 1);
-                    numbers.set(j, result.toString());
-                    Log.d("numbers after:", numbers.toString());
-                    Log.d("operators after:", operators.toString());
-                }
-            }
-            String result = StringUtils.joinEquation(numbers.toArray(new String[numbers.size()]), operators);
-            Log.d("Po przemianach:", result);
-            String[] testArray = {"10", "8"};
-            Log.d("joinEquation test:", StringUtils.joinEquation(testArray, "-"));
-            updateTextView(result);
-            calculate();
-        } else if (current.contains("%")) {
-            Double result = Double.parseDouble(numbers.get(0)) % Double.parseDouble(numbers.get(1));
-            updateTextView(result.toString());
-        } else {
             Interpreter ip = new Interpreter();
             try {
                 Log.d("Before inserting: ", calTextView.getText().toString());

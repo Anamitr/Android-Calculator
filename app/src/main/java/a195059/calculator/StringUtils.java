@@ -3,7 +3,10 @@ package a195059.calculator;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import static java.lang.Math.pow;
 
 /**
  * Created by socha on 24.03.2017.
@@ -94,5 +97,35 @@ public class StringUtils {
         equation += numbers[numbers.length - 1];
         Log.d("equation after join:", equation);
         return equation;
+    }
+
+    public static String convertSpecialOperator(String equation, String operator) {
+        ArrayList<String> numbers = new ArrayList<String>(Arrays.asList(getNumbers(equation)));
+        String operators = getOperators(equation);
+        Log.d("numbers before:", numbers.toString());
+        Log.d("operators before:", operators.toString());
+        if (equation.contains(operator)) {
+            for (Integer j = 0; j < operators.length(); j++) {
+                if (operators.charAt(j) == operator.charAt(0)) {
+                    Log.d("Found ^ at:", j.toString());
+                    String first = numbers.get(j);
+                    String second = numbers.get(j + 1);
+                    Double result = pow(Double.parseDouble(first), Double.parseDouble(second));
+                    operators = StringUtils.deleteCharAt(operators, j);
+                    numbers.remove(j + 1);
+                    numbers.set(j, result.toString());
+                    Log.d("numbers after:", numbers.toString());
+                    Log.d("operators after:", operators.toString());
+                    j--;
+                }
+            }
+        }
+        return joinEquation(numbers.toArray(new String[numbers.size()]), operators);
+    }
+
+    public static boolean checkIfOpNotLat(String equation) {
+        String lastChar = equation.substring(equation.length() - 1);
+        if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%")) return false;
+        else return true;
     }
 }

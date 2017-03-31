@@ -19,7 +19,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
         android:id="@+id/bSimple"
-        android:onClick="simpleClick"/>
+        android:onClick="simpleClick"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
     <Button
         android:text="Advanced"
@@ -30,18 +32,9 @@
         android:layout_alignStart="@+id/bSimple"
         android:layout_marginTop="17dp"
         android:id="@+id/bAdvanced"
-        android:onClick="advancedClick"/>
-
-    <Button
-        android:text="Exit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bExit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="exitClick"
-        />
+        android:onClick="advancedClick"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
     <Button
         android:text="About"
@@ -51,5 +44,20 @@
         android:layout_above="@+id/bExit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="aboutClick" />
+        android:onClick="aboutClick"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:text="Exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bExit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp"
+        android:onClick="exitClick"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>

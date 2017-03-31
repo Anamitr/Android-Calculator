@@ -1,6 +1,7 @@
 package a195059.calculator;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -69,7 +70,7 @@ public class SimpleActivity extends AppCompatActivity {
             tableLayout.addView(tableRow);
         }
 
-        setButtonsTexts(buttons);
+        setButtonsAppearance(buttons);
         setButtonsListeners(buttons);
         linearLayout.addView(calTextView = getCalculatorTextView());
         linearLayout.addView(tableLayout);
@@ -85,22 +86,28 @@ public class SimpleActivity extends AppCompatActivity {
         textView.setTextSize(FONT_SIZE);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         textView.setGravity(Gravity.CENTER | Gravity.RIGHT);
-        Interpreter ip = new Interpreter();
-        try {
-            ip.eval("result = " + "sin(2.0)");
-            double res = (double)ip.get("result");
-            Log.d("Result:", String.valueOf(res));
-            textView.setText(ip.get("result").toString());
-        } catch (Exception e) {
-            Log.e("Calculator", "Exception: " + e.getMessage());
-        }
+//        Interpreter ip = new Interpreter();
+//        try {
+//            ip.eval("result = " + "10.0%4.0");
+//            double res = (double)ip.get("result");
+//            Log.d("Result:", String.valueOf(res));
+//            textView.setText(ip.get("result").toString());
+//        } catch (Exception e) {
+//            Log.e("Calculator", "Exception: " + e.getMessage());
+//        }
         return textView;
     }
 
-    private void setButtonsTexts(Button[] buttons) {
+    private void setButtonsAppearance(Button[] buttons) {
         String[] labels = {"CE", "C", "<-", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "+-", "0", ",", "=",};
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.parseColor("#2061c9")); // Changes this drawbale to use a single color instead of a gradient
+        gd.setCornerRadius(5);
+        gd.setStroke(1, Color.parseColor("#0099cc"));
         for (int i = 0; i < NUM_OF_BUTTONS; i++) {
             buttons[i].setText(labels[i]);
+            buttons[i].setTextColor(Color.parseColor("#FFFFFF"));
+            buttons[i].setBackgroundDrawable(gd);
         }
     }
 
