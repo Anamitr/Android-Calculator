@@ -2,31 +2,139 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\student\Desktop\repo\Android-Calculator\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\dc1450505da11512d23feba0c755930738b51628\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="19bb1d7b311106544ed148cc4cdcfb4be928aced">
-        <dex dex="C:\Users\student\Desktop\repo\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b19ffc2c052ef71782da479aab87008bd46a7dc7\classes.dex" />
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_d26267020847fedd8fff43e7d8c7719d528604cd.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\student\Desktop\repo\Android-Calculator\app\libs\bsh-2.0b4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a05f0a0feefa8d8467ac80e16e7de071489f0d9c">
-        <dex dex="C:\Users\student\Desktop\repo\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\2\bsh-2.0b4_b8c9675d8c39f28c6c9a49ca414061dc4c3d1df9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\student\Desktop\repo\Android-Calculator\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="C:\Users\student\Desktop\repo\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3001b91a4c0984fe06b2e60184178012389f177e\classes.dex" />
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_fe9819308f38fbe8c840aef69d513fd6fa65d34f\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\fda81b4592587166f9517cff93b930020e287ea9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_91108c3bdab55205d49c92ed0879aaa727326f6e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_8e8cafaf3049bb32bcc47a60e83a39eb68f179f3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="G:\Workspaces\Android\Android-Calculator\app\libs\bsh-2.0b4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a05f0a0feefa8d8467ac80e16e7de071489f0d9c">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\bsh-2.0b4_ac33e7e5d6df09a46373040d9fbcbd19213b65af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\753a95fab3d6836fe400a1b98109ea27b891edc3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_8ad127fbcb58d85ecc393e276d8e74b502bd6141.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Workspaces\Android\Android-Calculator\app\libs\bsh-2.0b4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a05f0a0feefa8d8467ac80e16e7de071489f0d9c">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\2\bsh-2.0b4_ac33e7e5d6df09a46373040d9fbcbd19213b65af\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\06310ee8d35c46b329074eb0a733eb30273ab06b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_e1c548298f6e3d2cb4ab13ca1a3d4e8ce520daf2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\f082887513a9148d72f2025c458ad2c734c480df\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_1421a7b018157fd850fdec97292801bff977fb7e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="74deecdc7bfcf87bf0996769d34b43042d929726">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_0370b27fe31c2c9d429abb083b44bdc38529a24e\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\7f22caecb07633fe969f328d9b13de16424cc547\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_f49774adc6faa90a8006d2a616cc8bebdc6874a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\688b38bd8255aa6ab067d05f1d33c7884c4e8ac3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_c74b4821f3939c7140990ab26b19564aeb6546ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\137bcbc6d546c770d5df371365b906191ac4a8e9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_6acdf6cf9d714da7f5723344e604134ebb9345ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\97166f70962fe34199bfae1ba7a0c48a1ad7de50\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_7b6941fac9c6370aa9954d71325665f96dc6bf89.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\socha\.android\build-cache\d686a4a3f25be1838149492f868bbc160a8db264\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="G:\Workspaces\Android\Android-Calculator\app\build\intermediates\pre-dexed\debug\classes_70ab741879c63140354f0bd104f3ac6426115e86.jar" />
     </item>
 
 </items>

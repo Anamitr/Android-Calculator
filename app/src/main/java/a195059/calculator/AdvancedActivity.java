@@ -1,6 +1,7 @@
 package a195059.calculator;
 
 import android.graphics.Color;
+import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,10 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.view.ViewGroup.LayoutParams;
 
 import java.text.DecimalFormat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static java.lang.Math.*;
+
 import bsh.Interpreter;
 
 public class AdvancedActivity extends AppCompatActivity {
@@ -80,6 +86,7 @@ public class AdvancedActivity extends AppCompatActivity {
         TextView textView = new TextView(getApplicationContext());
         textView.setText("0");
         textView.setHeight(TEXT_VIEW_SIZE);
+        //textView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         textView.setBackgroundColor(Color.parseColor("#0099cc"));
         textView.setTextSize(FONT_SIZE);
         textView.setTextColor(Color.parseColor("#FFFFFF"));
@@ -186,10 +193,11 @@ public class AdvancedActivity extends AppCompatActivity {
         buttons[10].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
+                //calculate();
                 String current = calTextView.getText().toString().trim();
                 String lastChar = current.substring(current.length() - 1);
-                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*")  || lastChar.equals("^")  || lastChar.equals("%") ) Log.d("SameChar: ", "Nic nie robimy");
+                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
+                    Log.d("SameChar: ", "Nic nie robimy");
                 else if (calTextView.getText().toString().trim().equals("0"))
                     updateTextView("^");
                 else updateTextView(calTextView.getText() + "^");
@@ -201,7 +209,8 @@ public class AdvancedActivity extends AppCompatActivity {
                 calculate();
                 String current = calTextView.getText().toString().trim();
                 String lastChar = current.substring(current.length() - 1);
-                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*")  || lastChar.equals("^")  || lastChar.equals("%") ) Log.d("SameChar: ", "Nic nie robimy");
+                if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
+                    Log.d("SameChar: ", "Nic nie robimy");
                 else if (calTextView.getText().toString().trim().equals("0"))
                     updateTextView("%");
                 else updateTextView(calTextView.getText() + "%");
@@ -219,7 +228,8 @@ public class AdvancedActivity extends AppCompatActivity {
 //                        Log.d("Equals 0?: ", Boolean.toString(calTextView.getText().toString().trim().equals("0")));
                         String current = calTextView.getText().toString().trim();
                         String lastChar = current.substring(current.length() - 1);
-                        if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^")  || lastChar.equals("%") ) Log.d("SameChar: ", "Nic nie robimy");
+                        if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%"))
+                            Log.d("SameChar: ", "Nic nie robimy");
                         else if (calTextView.getText().toString().trim().equals("0"))
                             updateTextView(label);
                         else updateTextView(calTextView.getText() + label);
@@ -232,10 +242,11 @@ public class AdvancedActivity extends AppCompatActivity {
                         Log.d("TextView: ", "(" + calTextView.getText().toString() + ")");
                         String current = calTextView.getText().toString().trim();
                         String lastChar = current.substring(current.length() - 1);
-                        if(lastChar.matches(digitRegex) && !StringUtils.getLastNumber(current).contains(label)) updateTextView(calTextView.getText() + label);
+                        if (lastChar.matches(digitRegex) && !StringUtils.getLastNumber(current).contains(label))
+                            updateTextView(calTextView.getText() + label);
                     }
                 });
-            else if(label == "=")
+            else if (label == "=")
                 buttons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -264,17 +275,37 @@ public class AdvancedActivity extends AppCompatActivity {
 
     private void calculate() {
         String current = calTextView.getText().toString().trim();
-        String[] numbers = current.split("[-/+\\*^%]");
-        String operators = current.replaceAll("[0123456789.]", "");
-        if(current.contains("^")) {
-            Double result = pow(Double.parseDouble(numbers[0]),Double.parseDouble(numbers[1]));
+        ArrayList<String> numbers = new ArrayList<String>(Arrays.asList(StringUtils.getNumbers(current)));
+        String operators = StringUtils.getOperators(current);
+        Log.d("numbers before:", numbers.toString());
+        Log.d("operators before:", operators.toString());
+        if (current.contains("^")) {
+            int count = StringUtils.countSubstring(operators, "^");
+            Integer j = 0;
+
+            for (; j < operators.length(); j++) {
+                if (operators.charAt(j) == '^') {
+                    Log.d("Found ^ at:", j.toString());
+                    String first = numbers.get(j);
+                    String second = numbers.get(j + 1);
+                    Double result = pow(Double.parseDouble(first), Double.parseDouble(second));
+                    operators = StringUtils.deleteCharAt(operators, j);
+                    numbers.remove(j + 1);
+                    numbers.set(j, result.toString());
+                    Log.d("numbers after:", numbers.toString());
+                    Log.d("operators after:", operators.toString());
+                }
+            }
+            String result = StringUtils.joinEquation(numbers.toArray(new String[numbers.size()]), operators);
+            Log.d("Po przemianach:", result);
+            String[] testArray = {"10", "8"};
+            Log.d("joinEquation test:", StringUtils.joinEquation(testArray, "-"));
+            updateTextView(result);
+            calculate();
+        } else if (current.contains("%")) {
+            Double result = Double.parseDouble(numbers.get(0)) % Double.parseDouble(numbers.get(1));
             updateTextView(result.toString());
-        }
-        else if(current.contains("%")) {
-            Double result = Double.parseDouble(numbers[0])%Double.parseDouble(numbers[1]);
-            updateTextView(result.toString());
-        }
-        else {
+        } else {
             Interpreter ip = new Interpreter();
             try {
                 Log.d("Before inserting: ", calTextView.getText().toString());
