@@ -123,9 +123,10 @@ public class StringUtils {
         return joinEquation(numbers.toArray(new String[numbers.size()]), operators);
     }
 
-    public static boolean checkIfOpNotLat(String equation) {
+    public static boolean checkIfOpCorrect(String equation) {
         String lastChar = equation.substring(equation.length() - 1);
         if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%")) return false;
+        else if(equation.contains("∞") || equation.contains("NaN")) return false;
         else return true;
     }
 }

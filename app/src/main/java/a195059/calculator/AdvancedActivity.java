@@ -130,7 +130,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     negateResult();
                 }
@@ -140,7 +140,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     current = calTextView.getText().toString().trim();
                     Double result = Double.parseDouble(current);
@@ -153,7 +153,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     current = calTextView.getText().toString().trim();
                     Double result = Double.parseDouble(current);
@@ -166,7 +166,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     current = calTextView.getText().toString().trim();
                     Double result = Double.parseDouble(current);
@@ -179,7 +179,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     current = calTextView.getText().toString().trim();
                     Double result = Double.parseDouble(current);
@@ -192,7 +192,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current = calTextView.getText().toString().trim();
-                if(StringUtils.checkIfOpNotLat(current)) {
+                if(StringUtils.checkIfOpCorrect(current)) {
                     calculate();
                     current = calTextView.getText().toString().trim();
                     Double result = Double.parseDouble(current);
@@ -239,7 +239,7 @@ public class AdvancedActivity extends AppCompatActivity {
                         Log.d("TextView: ", "(" + calTextView.getText().toString() + ")");
 //                        Log.d("Equals 0?: ", Boolean.toString(calTextView.getText().toString().trim().equals("0")));
                         String current = calTextView.getText().toString().trim();
-                        if(StringUtils.checkIfOpNotLat(current)) {
+                        if(StringUtils.checkIfOpCorrect(current)) {
                             if (calTextView.getText().toString().trim().equals("0") && label == "-")
                                 updateTextView(label);
                             else if(calTextView.getText().toString().trim().equals("0")) {}

@@ -12,7 +12,7 @@
     tools:context="a195059.calculator.AboutActivity">
 
     <TextView
-        android:text="Kalkulator wykonany przez Konrada Sochackiego na laboratorium PAM"
+        android:text="@string/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

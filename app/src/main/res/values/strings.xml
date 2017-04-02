@@ -3,4 +3,5 @@
     <string name="button_size">85dp</string>
     <string name="text_size">20</string>
     <string name="button_color">#0099cc</string>
+    <string name="about">Kalkulator wykonany przez Konrada Sochackiego w 2017 na laboratorium PAM</string>
 </resources>
