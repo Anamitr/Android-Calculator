@@ -29,7 +29,7 @@ public class AdvancedActivity extends AppCompatActivity {
     public static int BUTTON_ROWS = 7;
     public static int BUTTON_COLUMNS = 4;
     public static final int NUM_OF_BUTTONS = BUTTON_ROWS * BUTTON_COLUMNS;
-    public static final int MAX_TEXTVIEW_CHARS = 10;
+    public static int MAX_TEXTVIEW_CHARS = 10;
     public static final String digitRegex = "\\d+";
 
     private TextView calTextView;
@@ -37,16 +37,17 @@ public class AdvancedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String orientation = getRotation(this);
+        String orientation = StringUtils.getRotation(this);
         Log.d("Orientation:",orientation);
         if(orientation.contains("portrait")) {
             TEXT_VIEW_SIZE = 200;
             FONT_SIZE = 60;
+            MAX_TEXTVIEW_CHARS = 10;
         }
         else if(orientation.contains("landscape")) {
-            Log.d("Landscape:",orientation);
             TEXT_VIEW_SIZE = 100;
             FONT_SIZE = 45;
+            MAX_TEXTVIEW_CHARS = 23;
         }
 
         setContentView(getTableWithAllRowsStretchedView());
@@ -338,17 +339,5 @@ public class AdvancedActivity extends AppCompatActivity {
         savedInstanceState.putString("value", calTextView.getText().toString().trim());
     }
 
-    public String getRotation(Context context){
-        final int rotation = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
-        switch (rotation) {
-            case Surface.ROTATION_0:
-                return "portrait";
-            case Surface.ROTATION_90:
-                return "landscape";
-            case Surface.ROTATION_180:
-                return "reverse portrait";
-            default:
-                return "reverse landscape";
-        }
-    }
+
 }

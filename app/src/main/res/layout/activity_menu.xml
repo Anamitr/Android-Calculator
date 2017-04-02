@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/bSimple"
         android:onClick="simpleClick"
         android:background="@drawable/button"

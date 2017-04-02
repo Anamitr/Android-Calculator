@@ -26,7 +26,7 @@ public class SimpleActivity extends AppCompatActivity {
     public static final int BUTTON_ROWS = 5;
     public static final int BUTTON_COLUMNS = 4;
     public static final int NUM_OF_BUTTONS = BUTTON_ROWS * BUTTON_COLUMNS;
-    public static final int MAX_TEXTVIEW_CHARS = 10;
+    public static int MAX_TEXTVIEW_CHARS = 10;
     public static final String digitRegex = "\\d+";
 
     private TextView calTextView;
@@ -34,6 +34,15 @@ public class SimpleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String orientation = StringUtils.getRotation(this);
+        Log.d("Orientation:",orientation);
+        if(orientation.contains("portrait")) {
+            MAX_TEXTVIEW_CHARS = 10;
+        }
+        else if(orientation.contains("landscape")) {
+            MAX_TEXTVIEW_CHARS = 18;
+        }
+
         setContentView(getTableWithAllRowsStretchedView());
         if (savedInstanceState != null){
             updateTextView(savedInstanceState.getString("value"));

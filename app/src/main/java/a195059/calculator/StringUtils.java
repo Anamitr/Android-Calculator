@@ -1,7 +1,10 @@
 package a195059.calculator;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Surface;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -126,7 +129,21 @@ public class StringUtils {
     public static boolean checkIfOpCorrect(String equation) {
         String lastChar = equation.substring(equation.length() - 1);
         if (lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("/") || lastChar.equals("*") || lastChar.equals("^") || lastChar.equals("%")) return false;
-        else if(equation.contains("∞") || equation.contains("NaN")) return false;
+        else if(equation.contains("∞") || equation.contains("NaN") || equation.contains("Infinity")) return false;
         else return true;
+    }
+
+    public static String getRotation(Context context){
+        final int rotation = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                return "portrait";
+            case Surface.ROTATION_90:
+                return "landscape";
+            case Surface.ROTATION_180:
+                return "reverse portrait";
+            default:
+                return "reverse landscape";
+        }
     }
 }
