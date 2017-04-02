@@ -1,12 +1,15 @@
 package a195059.calculator;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -21,10 +24,10 @@ import bsh.Interpreter;
 
 public class AdvancedActivity extends AppCompatActivity {
 
-    public static final int TEXT_VIEW_SIZE = 200;
-    public static final int FONT_SIZE = 60;
-    public static final int BUTTON_ROWS = 7;
-    public static final int BUTTON_COLUMNS = 4;
+    public static int TEXT_VIEW_SIZE = 200;
+    public static int FONT_SIZE = 60;
+    public static int BUTTON_ROWS = 7;
+    public static int BUTTON_COLUMNS = 4;
     public static final int NUM_OF_BUTTONS = BUTTON_ROWS * BUTTON_COLUMNS;
     public static final int MAX_TEXTVIEW_CHARS = 10;
     public static final String digitRegex = "\\d+";
@@ -34,10 +37,22 @@ public class AdvancedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String orientation = getRotation(this);
+        Log.d("Orientation:",orientation);
+        if(orientation.contains("portrait")) {
+            TEXT_VIEW_SIZE = 200;
+            FONT_SIZE = 60;
+        }
+        else if(orientation.contains("landscape")) {
+            Log.d("Landscape:",orientation);
+            TEXT_VIEW_SIZE = 100;
+            FONT_SIZE = 45;
+        }
+
         setContentView(getTableWithAllRowsStretchedView());
-//        if (savedInstanceState != savedInstanceState){
-//            updateTextView(savedInstanceState.getString("value"));
-//        }
+        if (savedInstanceState != null){
+            updateTextView(savedInstanceState.getString("value"));
+        }
     }
 
     public LinearLayout getTableWithAllRowsStretchedView() {
@@ -101,6 +116,7 @@ public class AdvancedActivity extends AppCompatActivity {
             buttons[i].setText(labels[i]);
             buttons[i].setTextColor(Color.parseColor("#FFFFFF"));
             buttons[i].setBackgroundDrawable(gd);
+            buttons[i].setTextSize(FONT_SIZE/4);
         }
     }
 
@@ -320,5 +336,19 @@ public class AdvancedActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("value", calTextView.getText().toString().trim());
+    }
+
+    public String getRotation(Context context){
+        final int rotation = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                return "portrait";
+            case Surface.ROTATION_90:
+                return "landscape";
+            case Surface.ROTATION_180:
+                return "reverse portrait";
+            default:
+                return "reverse landscape";
+        }
     }
 }
